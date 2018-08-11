@@ -1,0 +1,11 @@
+{
+    "express":{
+        "port":3005,
+        "host":"http://localhost"
+    },
+    "mongodb":{
+        "server":"localhost:27017",
+        "db":"testcure"
+    },
+    "env":"production"
+}
