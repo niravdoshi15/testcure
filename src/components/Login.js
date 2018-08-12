@@ -31,15 +31,16 @@ export default class Login extends Component {
       username: this.state.username,
       password: this.state.password
     };
-    axios.post(`http://localhost:3005/api/users/login`, { login })
+    axios.post(`http://localhost:3005/api/users/login`, login )
       .then(res => {
         console.log(res);
         console.log(res.data);
-        alert('Login Successful')
+        alert("Successful")
+        console.log("Successful");
       })
       .catch(error => {
         console.log(error);
-        alert(error)
+        alert("Unsuccessful")
         });
   }
 

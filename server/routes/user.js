@@ -21,9 +21,9 @@ router.post('/users/login', function (req, res, next) {
         }
         else {
             if (docs.length == 1)
-                res.json({ msg: "Login successful" })
+                res.status(200).json({message:"Login success", loginSuccess:true})
             else
-                res.json({ msg: 'Login Failed' })
+                res.status(404).json({message:"User not exists", loginSuccess:false});
         }
     })
 })

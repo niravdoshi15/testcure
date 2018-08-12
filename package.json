@@ -25,8 +25,11 @@
   "scripts": {
     "start": "concurrently \"npm run fake-api\" \"react-scripts start\"",
     "build": "react-scripts build",
-    "fake-api": "node server/app.js",
+    "fake-api": "nodemon server/app.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
   }
 }
