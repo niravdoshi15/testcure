@@ -26,25 +26,7 @@ class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();
   }
-
-  // loginUser = (e) => {
-  //   var login = {
-  //     username: this.state.username,
-  //     password: this.state.password
-  //   };
-  //   axios.post(`http://localhost:3005/api/users/login`, login )
-  //     .then(res => {
-  //       console.log(res);
-  //       console.log(res.data);
-  //       alert("Successful")
-  //       console.log("Successful");
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //       alert("Unsuccessful")
-  //       });
-  // }
-
+  
   loginUser = () => {
     const creds= {
       username:this.state.username,
