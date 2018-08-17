@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import axios from "axios";
+import {connect} from 'react-redux'
+import {authenticate} from '../actions/postAction'
+import propTypes from 'prop-types'
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
 
@@ -11,7 +13,6 @@ export default class Login extends Component {
       password: ""
     };
   }
-
   validateForm() {
     return this.state.username.length > 0 && this.state.password.length > 0;
   }
@@ -26,23 +27,31 @@ export default class Login extends Component {
     event.preventDefault();
   }
 
-  loginUser = (e) => {
-    var login = {
-      username: this.state.username,
-      password: this.state.password
-    };
-    axios.post(`http://localhost:3005/api/users/login`, login )
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-        alert("Successful")
-        console.log("Successful");
-      })
-      .catch(error => {
-        console.log(error);
-        alert("Unsuccessful")
-        });
+  // loginUser = (e) => {
+  //   var login = {
+  //     username: this.state.username,
+  //     password: this.state.password
+  //   };
+  //   axios.post(`http://localhost:3005/api/users/login`, login )
+  //     .then(res => {
+  //       console.log(res);
+  //       console.log(res.data);
+  //       alert("Successful")
+  //       console.log("Successful");
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //       alert("Unsuccessful")
+  //       });
+  // }
+
+  loginUser = () => {
+    const creds= {
+      username:this.state.username,
+      password:this.state.password
   }
+        this.props.authenticate(creds);
+}
 
   render() {
     return (
@@ -69,7 +78,7 @@ export default class Login extends Component {
             block
             bsSize="large"
             disabled={!this.validateForm()}
-            onClick={(event) => this.loginUser(event)}
+            onClick={() => this.loginUser()}
             type="submit"
           >
             Login
@@ -79,3 +88,16 @@ export default class Login extends Component {
     );
   }
 }
+
+Login.propTypes={
+  authenticate:propTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+    isAuthenticating: state.login.isAuthenticating,
+    isLoggedIn: state.login.isLoggedIn,
+    authenticationToken: state.login.authenticationToken,
+    authError: state.login.authError
+})
+
+export default connect(mapStateToProps, {authenticate})(Login)
