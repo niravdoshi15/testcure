@@ -23,7 +23,6 @@ router.post('/users/login', function (req, res, next) {
         else {
             if (docs.length == 1) {
                 const token = jwt.sign({ sub: req.body.username }, config.secret);
-                console.log(token)
                 res.status(200).json({ message: "Login success", loginSuccess: true, token })
             }
             else

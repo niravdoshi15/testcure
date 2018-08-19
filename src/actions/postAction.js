@@ -29,8 +29,6 @@ export const authenticate = (creds) => dispatch => {
         .then(response => {
             dispatch(authSuccess(response));
             localStorage.setItem('user', response.data.token);
-            console.log(response.data)
-            console.log(response.data.token)
             alert("Successful" + JSON.stringify(response.data.token))
         })
         .catch(error => {
