@@ -28,7 +28,10 @@ export const authenticate = (creds) => dispatch => {
     return axios.post(`http://localhost:3005/api/users/login`, creds)
         .then(response => {
             dispatch(authSuccess(response));
-            alert("Successful")
+            localStorage.setItem('user', response.data.token);
+            console.log(response.data)
+            console.log(response.data.token)
+            alert("Successful" + JSON.stringify(response.data.token))
         })
         .catch(error => {
             dispatch(authFail(error))

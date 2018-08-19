@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var config = require('config');
 var path = require('path');
+const jwt = require('./helper/jwt');
 
 var app = express();
 
@@ -25,6 +26,8 @@ app.use(function (req, res, next) {
 })
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(jwt());
 
 app.use('/api',userRoutes);
 
