@@ -4,6 +4,7 @@ import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 class Logout extends Component {
   logout=()=> {
     localStorage.removeItem('key');
+    window.location.reload(); 
   }
 
   render() {
